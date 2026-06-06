@@ -31,6 +31,11 @@ const methods: { name: string; scheme: string }[] = [
   { name: "All UPI Apps", scheme: "upi://pay" },
 ]
 
+function isMobileDevice() {
+  if (typeof navigator === "undefined") return false
+  return /android|iphone|ipad|ipod|mobile/i.test(navigator.userAgent)
+}
+
 const verifyItems = ["Customer Name", "Mobile Number", "Service Name", "Transaction ID (UTR Number)", "Payment Screenshot"]
 
 const statusSteps = [
@@ -45,8 +50,21 @@ export function Payments() {
   const [copied, setCopied] = useState(false)
   const [utr, setUtr] = useState("")
   const [utrName, setUtrName] = useState("")
+  const [notice, setNotice] = useState<string | null>(null)
 
-  const openUpiApp = (scheme: string) => {
+  const openUpiApp = (name: string, scheme: string) => {
+    if (!amount || Number(amount) <= 0) {
+      setNotice("Please enter a valid amount before choosing a payment app.")
+      return
+    }
+    setNotice(null)
+
+    if (!isMobileDevice()) {
+      // On desktop the app cannot open — guide the user to the QR / UPI ID.
+      setNotice(`${name} opens only on your phone. On desktop, scan the QR code or pay to ${UPI_ID} from any UPI app.`)
+      return
+    }
+
     const link = buildUpiLink(scheme, amount)
     // Navigating the current window triggers the app intent on mobile.
     window.location.href = link
@@ -111,13 +129,19 @@ export function Payments() {
                   <button
                     key={m.name}
                     type="button"
-                    onClick={() => openUpiApp(m.scheme)}
+                    onClick={() => openUpiApp(m.name, m.scheme)}
                     className="rounded-lg border border-border bg-secondary px-3 py-2.5 text-center text-sm font-medium text-foreground transition-colors hover:border-gold hover:bg-gold/10"
                   >
                     {m.name}
                   </button>
                 ))}
               </div>
+
+              {notice && (
+                <p className="mt-3 rounded-lg border border-gold/40 bg-gold/10 px-3 py-2 text-sm font-medium text-foreground">
+                  {notice}
+                </p>
+              )}
 
               {/* UPI ID + copy */}
               <div className="mt-5 flex items-center justify-between gap-3 rounded-lg bg-navy p-4">
