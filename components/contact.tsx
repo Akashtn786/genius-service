@@ -72,7 +72,7 @@ export function Contact() {
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href={`https://wa.me/919884341894?text=${encodeURIComponent(
-                "Hello Genius Service Centre, I would like to enquire about your services.",
+                "Hi Genius Service Centre, I need assistance with your services.",
               )}`}
               target="_blank"
               rel="noreferrer"

@@ -34,7 +34,9 @@ export function Hero() {
             <ArrowRight className="size-4" />
           </a>
           <a
-            href="https://wa.me/919884341894"
+            href={`https://wa.me/919884341894?text=${encodeURIComponent(
+              "Hi Genius Service Centre, I need assistance with your services.",
+            )}`}
             target="_blank"
             rel="noreferrer"
             className="flex items-center gap-2 rounded-lg border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
