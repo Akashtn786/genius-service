@@ -1,7 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { Phone, Menu, X, Sparkles } from "lucide-react"
+import Image from "next/image"
+import { Phone, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 const navLinks = [
@@ -18,8 +19,8 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-white/10 bg-navy-deep/95 backdrop-blur supports-[backdrop-filter]:bg-navy-deep/80">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <a href="#" className="flex items-center gap-3">
-          <span className="flex size-10 items-center justify-center rounded-lg bg-gold text-navy-deep">
-            <Sparkles className="size-5" />
+          <span className="flex size-10 items-center justify-center overflow-hidden rounded-full ring-1 ring-gold/40">
+            <Image src="/logo.jpeg" alt="Genius Service Centre logo" width={40} height={40} className="size-full object-cover" />
           </span>
           <span className="flex flex-col leading-tight">
             <span className="font-heading text-base font-bold text-white sm:text-lg">Genius Service Centre</span>

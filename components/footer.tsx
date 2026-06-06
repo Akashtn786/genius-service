@@ -1,4 +1,4 @@
-import { Sparkles } from "lucide-react"
+import Image from "next/image"
 
 const quickLinks = [
   { label: "Services", href: "#services" },
@@ -15,8 +15,8 @@ export function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-3">
-            <span className="flex size-10 items-center justify-center rounded-lg bg-gold text-navy-deep">
-              <Sparkles className="size-5" />
+            <span className="flex size-10 items-center justify-center overflow-hidden rounded-full ring-1 ring-gold/40">
+              <Image src="/logo.jpeg" alt="Genius Service Centre logo" width={40} height={40} className="size-full object-cover" />
             </span>
             <span className="font-heading text-lg font-bold">Genius Service Centre</span>
           </div>
