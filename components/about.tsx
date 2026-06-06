@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { BadgeCheck, MapPin, Star, Zap } from "lucide-react"
+import { BadgeCheck, MapPin, MessageCircle, Star, Zap } from "lucide-react"
 import { SectionLabel } from "@/components/section-label"
 
 const badges = [
@@ -27,6 +27,31 @@ export function About() {
             Shenoy Nagar, Chennai — bringing fast, reliable and affordable access to over 30 essential services under
             one roof.
           </p>
+
+          <div className="mt-6 flex items-center gap-4 rounded-2xl border border-border bg-card p-4">
+            <Image
+              src="/owner.jpeg"
+              alt="Akash Sharma, Founder of Genius Service Centre"
+              width={72}
+              height={72}
+              className="size-16 rounded-full object-cover ring-2 ring-gold/50"
+            />
+            <div>
+              <p className="font-heading text-lg font-bold text-foreground">Akash Sharma</p>
+              <p className="text-sm text-muted-foreground">Founder &amp; Service Manager</p>
+              <a
+                href={`https://wa.me/919884341894?text=${encodeURIComponent(
+                  "Hello Akash, I found Genius Service Centre online and would like to know more about your services.",
+                )}`}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-gold hover:underline"
+              >
+                <MessageCircle className="size-3.5" />
+                Message on WhatsApp
+              </a>
+            </div>
+          </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
             {badges.map((badge) => (
